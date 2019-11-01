@@ -7,8 +7,19 @@ import 'package:dormshub/views/hallselection.dart';
 import 'package:dormshub/views/home.dart';
 
 class WelcomeScreen extends StatelessWidget {
+
+  double _width = 300;
+  double _heigth = 300;
+
+
   @override
   Widget build(BuildContext context) {
+
+    if (MediaQuery.of(context).size.width < 600) {
+          _width = 150;
+          _heigth = 150;
+        } 
+
     return Container(
       child: Scaffold(
         // appBar: AppBar(
@@ -31,8 +42,9 @@ class WelcomeScreen extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(25, 100, 25, 25),
               child: Image.asset(
                 "assets/imgs/logo.png",
-                width: 300,
-                height: 300,
+                
+                width: _width,
+                height: _heigth,
                 fit: BoxFit.contain,
               ),
             ),

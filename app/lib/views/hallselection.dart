@@ -1,7 +1,11 @@
+import 'dart:collection';
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:dormshub/custom/custom_footer.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:dormshub/views/home.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class HallSelectionPage extends StatefulWidget {
   HallSelectionPage({Key key}) : super(key: key);
@@ -36,6 +40,20 @@ class _HallSelectionPageState extends State<HallSelectionPage> {
     "Sawyer Hall",
     "The Minis",
   ];
+  final databaseReference = Firestore.instance;
+  Future<Map> getData(String hallselected) async {
+    print("here");
+    var result;
+    await databaseReference
+        .collection("halls")
+        .getDocuments()
+        .then((QuerySnapshot snapshot) {
+      snapshot.documents.forEach((f) => result = f.data);
+    });
+
+    print(result["name"]);
+    return result;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,16 +76,20 @@ class _HallSelectionPageState extends State<HallSelectionPage> {
             child: ListView.builder(
                 itemCount: halls.length,
                 itemBuilder: (context, index) {
-                  
-                    return ListTile(
-                      title: Text(
-                        halls[index],
-                        style: TextStyle(fontSize: 18),
-                      ),
-                      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage(hall: halls[index]))),//push hall index too
-                      );
-                    
-                  
+                  return ListTile(
+                    title: Text(
+                      halls[index],
+                      style: TextStyle(fontSize: 18),
+                    ),
+                    onTap: () => {
+                      getData(halls[index]),
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  HomePage(hall: halls[index])))
+                    }, //push hall index too
+                  );
                 })),
       ),
       bottomNavigationBar: CustomFooter(),

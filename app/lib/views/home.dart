@@ -16,6 +16,18 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   String  hall;
  _HomePageState(this.hall); 
+
+ Widget getPage(){
+   if(_myIndex == 0)
+   {
+     print(hall);
+      return HomeScreen(hall: hall,);
+   }else
+   {
+     return _myscreen[_myIndex];
+   }
+   
+ }
   
   int _myIndex = 0;
   final List<Widget> _myscreen = [
@@ -25,7 +37,7 @@ class _HomePageState extends State<HomePage> {
 
     Profile(),
   ];
-
+  
   final List<String> _text = [
     "Hubbard Hall",
     "Socials",
@@ -74,7 +86,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ],
             ),
-      body: _myscreen[_myIndex],
+      body: getPage(),
       bottomNavigationBar: BottomNavigationBar(
         onTap: _onItemTapped,
         backgroundColor: Colors.white,
