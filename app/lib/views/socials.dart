@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../model/social.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 class Socials extends StatefulWidget {
   Socials({Key key}) : super(key: key);
 
@@ -22,15 +23,33 @@ class _SocialsState extends State<Socials> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
-      child: ListView.builder(
-        scrollDirection: Axis.vertical,
-        shrinkWrap: true,
-        itemCount: socials.length,
-        itemBuilder: (BuildContext context, int index) {
-          return CardSocial(social:socials[index]);
-        },
-      ));
+      padding: const EdgeInsets.all(10.0),
+          child: StreamBuilder<QuerySnapshot>(
+            stream: Firestore.instance.collection("halls")
+                .document("Hubbard Hall")
+                .collection("socials")
+                //.getDocuments(.getDocuments()
+              .snapshots(),
+            builder: (BuildContext context,
+              AsyncSnapshot<QuerySnapshot> snapshot) {
+                if (snapshot.hasError)
+                  return new Text('Error: ${snapshot.error}');
+                switch (snapshot.connectionState) {
+                  case ConnectionState.waiting:
+                    return new Text('Loading...');
+                  default:
+                    return new ListView(
+                      children: snapshot.data.documents
+                        .map((DocumentSnapshot document) {
+                          return new CardSocial(social:
+                          Social(title: document['name'], description: document['description'], date:document['date'])
+                            
+                          );
+                      }).toList(),
+                    );
+                }
+              },
+            ));
   }
 }
 class CardSocial extends StatelessWidget {
@@ -43,12 +62,14 @@ class CardSocial extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 8.0,
+      elevation: 5.0,
+      
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+      
       child: Container(
-        decoration: BoxDecoration(gradient: LinearGradient(begin: Alignment.topRight,end: Alignment.bottomLeft, stops: [0.1,0.6,0.9],
-                      colors: [Colors.cyan,Colors.blue,Colors.blue]),borderRadius: BorderRadius.circular(15)),
+        decoration: BoxDecoration(color:Colors.white,// LinearGradient(begin: Alignment.topRight,end: Alignment.bottomLeft, stops: [0.1,0.6,0.9],
+                      /*colors: [Colors.cyan,Colors.blue,Colors.blue])*/borderRadius: BorderRadius.circular(15)),
         child: ListTileSocial(social:social),
       ),
     );
@@ -63,28 +84,30 @@ class ListTileSocial extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  ListTile(
-        contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+      
+         contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
         leading: Container(
-          padding: EdgeInsets.only(right: 12.0),
+          padding: EdgeInsets.only(right: 8.0),
           decoration: new BoxDecoration(
               border: new Border(
-                  right: new BorderSide(width: 1.0, color: Colors.white))),
-          child: Icon(Icons.favorite, color: Colors.white),
-        ),
+                  right: new BorderSide(width: 1.0, color: Color(0xfff77a05)))),
+          child: Text(
+         social.date,
+          style: TextStyle(color: Color(0xff0044bb), fontWeight: FontWeight.bold,fontSize: 20),
+        )),
         title: Text(
          social.title,
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          style: TextStyle(color: Color(0xff0044bb), fontWeight: FontWeight.bold,fontSize: 20),
         ),
         // subtitle: Text("Intermediate", style: TextStyle(color: Colors.white)),
 
-        subtitle: Row(
-          children: <Widget>[
-            Icon(Icons.linear_scale, color: Colors.yellowAccent),
-            Text(" " + social.description, style: TextStyle(color: Colors.white))
-          ],
-        ),
+        subtitle: 
+            //Icon(Icons.description, color: Colors.yellowAccent),
+            Text(social.description, style: TextStyle(color: Color(0xff000000)))
+          
+        ,
         trailing:
-            Icon(Icons.keyboard_arrow_right, color: Colors.white, size: 30.0));
+            Icon(Icons.keyboard_arrow_right, color: Color(0xff0044bb), size: 30.0));
   }
 }
      

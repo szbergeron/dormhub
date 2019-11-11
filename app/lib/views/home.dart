@@ -1,3 +1,4 @@
+import 'package:dormshub/test/testwidget.dart';
 import 'package:flutter/material.dart';
 // import 'package:unhdorm/buildinglist.dart';
 import 'package:dormshub/views/homescreen.dart';
@@ -22,7 +23,11 @@ class _HomePageState extends State<HomePage> {
    {
      print(hall);
       return HomeScreen(hall: hall,);
-   }else
+   }else if(_myIndex == 2)
+   {
+    return GiraGira(hall: hall,);
+   }
+   else
    {
      return _myscreen[_myIndex];
    }
@@ -33,7 +38,7 @@ class _HomePageState extends State<HomePage> {
   final List<Widget> _myscreen = [
     HomeScreen(),
     Socials(),
-    Profile(),
+    GiraGira(),
 
     Profile(),
   ];

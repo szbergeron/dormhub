@@ -5,20 +5,46 @@ import 'package:dormshub/model/social.dart';
 import 'package:dormshub/register.dart';
 import 'package:dormshub/views/hallselection.dart';
 import 'package:dormshub/views/home.dart';
+import 'package:flare_flutter/flare_actor.dart';
 
-class WelcomeScreen extends StatelessWidget {
+class WelcomeScreen extends StatefulWidget {
+  @override
+  _WelcomeScreenState createState() => _WelcomeScreenState();
+}
 
+class _WelcomeScreenState extends State<WelcomeScreen> {
   double _width = 300;
+  bool _animOP = false;
+  bool _animOP2 = false;
+  bool _animOP3 = false;
   double _heigth = 300;
+  String _animationName = "animate";
+  void _loadEarth() {
+    setState(() {
+      // _events = result["name"];
+      _animationName = "animate";
+    });
+  }
+  void _animOpacity()
+  {
+     setState(() {
+      // _events = result["name"];
+      _animOP = true;
+      _animOP2 = true;
+      _animOP3 = true;
 
+    });
+
+  }
 
   @override
   Widget build(BuildContext context) {
-
-    if (MediaQuery.of(context).size.width < 600) {
-          _width = 150;
-          _heigth = 150;
-        } 
+    if (MediaQuery.of(context).size.width < 410) {
+      _width = 150;
+      _heigth = 150;
+    }
+    _animOpacity();
+    
 
     return Container(
       child: Scaffold(
@@ -40,14 +66,25 @@ class WelcomeScreen extends StatelessWidget {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.fromLTRB(25, 100, 25, 25),
-              child: Image.asset(
-                "assets/imgs/logo.png",
-                
+              child: Container(
+                child: FlareActor(
+                  'assets/anim/mydorm.flr',
+                  alignment: Alignment.center,
+                  fit: BoxFit.contain,
+                  animation: _animationName,
+                ),
                 width: _width,
                 height: _heigth,
-                fit: BoxFit.contain,
               ),
+              // child: Image.asset(
+              //   "assets/imgs/logo.png",
+
+              //   width: _width,
+              //   height: _heigth,
+              //   fit: BoxFit.contain,
+              // ),
             ),
+            
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Center(
@@ -61,22 +98,25 @@ class WelcomeScreen extends StatelessWidget {
                 ),
               ),
             ),
-            DropDownButton(),
+           
+             DropDownButton(),
             Padding(
               padding: EdgeInsets.all(70),
             ),
-            MaterialButton(
-              onPressed: () => Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => HallSelectionPage(),
+           
+              MaterialButton(
+                onPressed: () => Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => HallSelectionPage(),
+                  ),
                 ),
+                minWidth: 100,
+                height: 40,
+                color: Color(0xff0044bb),
+                textColor: Colors.white,
+                child: Text("Continue"),
               ),
-              minWidth: 100,
-              height: 40,
-              color: Color(0xff0044bb),
-              textColor: Colors.white,
-              child: Text("Continue"),
-            ),
+          
           ],
         )
 

@@ -10,7 +10,7 @@
 		</data>
 		<key>flutter_assets/AssetManifest.json</key>
 		<data>
-		clM200z6/sHSqR4OrCV8+9OgKFc=
+		DNRFn+5SMw7ZiiYVo5Iq2YT9Y80=
 		</data>
 		<key>flutter_assets/FontManifest.json</key>
 		<data>
@@ -18,7 +18,39 @@
 		</data>
 		<key>flutter_assets/LICENSE</key>
 		<data>
-		1UNQ2UCPuMKD8oR6UyO5qMJYb88=
+		UwI0PYcQkZC45l73byVaZXHFzug=
+		</data>
+		<key>flutter_assets/assets/1.jpeg</key>
+		<data>
+		T4eHigGqCjppEMN5PZjXN63j2UE=
+		</data>
+		<key>flutter_assets/assets/2.jpeg</key>
+		<data>
+		Kpr+ISskXOhd00somUarsLf8WL0=
+		</data>
+		<key>flutter_assets/assets/3.jpeg</key>
+		<data>
+		d377rWShqdNs2Vg7Rxeo7aCMMLU=
+		</data>
+		<key>flutter_assets/assets/4.jpeg</key>
+		<data>
+		eJYwOmsjrusGdvMKWb5xwlngYP0=
+		</data>
+		<key>flutter_assets/assets/5.jpeg</key>
+		<data>
+		TT4rmr6kGvrgAnk8aSvOh+FM3g4=
+		</data>
+		<key>flutter_assets/assets/anim/dorm.flr</key>
+		<data>
+		AnQPAIq32Uv6poWsm7nYIyg9Gc8=
+		</data>
+		<key>flutter_assets/assets/anim/loading_earth.flr</key>
+		<data>
+		CZ2E2YLbVzIfXjmwM2ecdemauXA=
+		</data>
+		<key>flutter_assets/assets/anim/mydorm.flr</key>
+		<data>
+		unaur1Ev/6detv86hCtceQlIe3c=
 		</data>
 		<key>flutter_assets/assets/imgs/15-150046_clipart-isometric-ping-pong-table-image-source-table.png</key>
 		<data>
@@ -62,7 +94,7 @@
 		</data>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<data>
-		URZMts44mXq4VpF1BduQDR/I4OA=
+		ZIrHpfVn+W6S8ujiRp8Vkcv2RuY=
 		</data>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -79,11 +111,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			clM200z6/sHSqR4OrCV8+9OgKFc=
+			DNRFn+5SMw7ZiiYVo5Iq2YT9Y80=
 			</data>
 			<key>hash2</key>
 			<data>
-			kIzk+DX8EfMDSnRCTTyS5AkjvCYyjyQZNita4/p8EJY=
+			bcNBBuKZzpXJdbzHvJlvHo0xgF20Oqwip7kqfme09PE=
 			</data>
 		</dict>
 		<key>flutter_assets/FontManifest.json</key>
@@ -101,11 +133,99 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			1UNQ2UCPuMKD8oR6UyO5qMJYb88=
+			UwI0PYcQkZC45l73byVaZXHFzug=
 			</data>
 			<key>hash2</key>
 			<data>
-			aTvetd1A46kVz6V7hj/PmcdV68/Wzepk97A/iqcMfwM=
+			D2r9vtcUcMf/wAEGy6KAQ8UY+oS4A+LpMc+ZVFnJfDY=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/1.jpeg</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			T4eHigGqCjppEMN5PZjXN63j2UE=
+			</data>
+			<key>hash2</key>
+			<data>
+			ZM/gRNk9HmNFDT8BSanVTIPVGTQ+FvTvfqGl5dStDjc=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/2.jpeg</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			Kpr+ISskXOhd00somUarsLf8WL0=
+			</data>
+			<key>hash2</key>
+			<data>
+			ytFnREnrsNFG0NvVvVeP1mv8qsXFbpRGFhsWLUTiitY=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/3.jpeg</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			d377rWShqdNs2Vg7Rxeo7aCMMLU=
+			</data>
+			<key>hash2</key>
+			<data>
+			CBlcAJZwqOjCmj/xnHWOODg7HNdhf/I7S7P0eMKYRd4=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/4.jpeg</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			eJYwOmsjrusGdvMKWb5xwlngYP0=
+			</data>
+			<key>hash2</key>
+			<data>
+			dzWkydrkKullJAGPu+316lHaUO6n36j6+181qZWpwPU=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/5.jpeg</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			TT4rmr6kGvrgAnk8aSvOh+FM3g4=
+			</data>
+			<key>hash2</key>
+			<data>
+			gPZ55PgDY7Wo2nV6b9e10+mJ/vyk8bAv1gCeDnCfhGs=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/anim/dorm.flr</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			AnQPAIq32Uv6poWsm7nYIyg9Gc8=
+			</data>
+			<key>hash2</key>
+			<data>
+			KNs+SqtrqxDETpzzJDRtj7vTLS+q/ZnWO6qwBRbdRic=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/anim/loading_earth.flr</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			CZ2E2YLbVzIfXjmwM2ecdemauXA=
+			</data>
+			<key>hash2</key>
+			<data>
+			0jXApd9oUC/etaTuWElobbySfT3HZKYyGmTrhr9M0A0=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/anim/mydorm.flr</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			unaur1Ev/6detv86hCtceQlIe3c=
+			</data>
+			<key>hash2</key>
+			<data>
+			3FrpyAO6P8tFBod+ee4rY1CJQUn4LNFO/wczf/SwMk4=
 			</data>
 		</dict>
 		<key>flutter_assets/assets/imgs/15-150046_clipart-isometric-ping-pong-table-image-source-table.png</key>
@@ -222,11 +342,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			URZMts44mXq4VpF1BduQDR/I4OA=
+			ZIrHpfVn+W6S8ujiRp8Vkcv2RuY=
 			</data>
 			<key>hash2</key>
 			<data>
-			Vnl18sTqIEbYr/lJB7SaTTTffsyKm/Hp/DG31jVC2xI=
+			Yl2JZ8NYc2O828Xdmmf2PJ+18YjTngLQoyMhU6/eRlo=
 			</data>
 		</dict>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>

@@ -17,6 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
   _HomeScreenState({this.hall});
   int _events = 0;
   
+  
 
   void getData(myhall) async {
     var result;
@@ -130,6 +131,40 @@ class _HomeScreenState extends State<HomeScreen> {
                   Text('Ping pong tournament ',
                       style: TextStyle(color: Colors.black45)),
                 ]),
+          )
+        ,onTap: ()=>print("me")),
+        BuildTileM(
+          child: Padding(
+            padding: const EdgeInsets.all(24.0),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                
+                children: <Widget>[
+                  Material(
+                      color: Colors.orange,
+                      borderRadius: BorderRadius.circular(24.0),
+                      child: Center(
+                          child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Icon(Icons.book,
+                            color: Colors.white, size: 30.0),
+                      ))),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: <Widget>[
+                      Text('Newsletters',
+                          style: TextStyle(color: Colors.orange)),
+                      Text("November Week 1",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 25.0))
+                    ],
+                  ),
+                  
+                ]),
           ),
         ),
       ],
@@ -137,6 +172,8 @@ class _HomeScreenState extends State<HomeScreen> {
         StaggeredTile.extent(2, 110.0),
         StaggeredTile.extent(1, 180.0),
         StaggeredTile.extent(1, 180.0),
+        StaggeredTile.extent(2, 110.0),
+        
       ],
     );
   }
