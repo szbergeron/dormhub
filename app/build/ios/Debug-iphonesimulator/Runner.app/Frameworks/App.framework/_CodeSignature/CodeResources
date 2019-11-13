@@ -10,7 +10,7 @@
 		</data>
 		<key>flutter_assets/AssetManifest.json</key>
 		<data>
-		DNRFn+5SMw7ZiiYVo5Iq2YT9Y80=
+		1NY0Uc4UMy7TcT6N0IZfRJCRFp0=
 		</data>
 		<key>flutter_assets/FontManifest.json</key>
 		<data>
@@ -68,6 +68,10 @@
 		<data>
 		xvhly3J6OeHMG5WOQvjG5fENVVY=
 		</data>
+		<key>flutter_assets/assets/imgs/hallhub.png</key>
+		<data>
+		TUW1ATuv0qn+vZCP91Lg7jaI+pw=
+		</data>
 		<key>flutter_assets/assets/imgs/kisspng-table-tennis-racket-double-happiness-shanghai-ball-ping-pong-table-5a7848a5464b20.3884973515178323572879.jpg</key>
 		<data>
 		D45u0xCW4aZr2w4hsHtFGhtBWuo=
@@ -94,7 +98,7 @@
 		</data>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<data>
-		ZIrHpfVn+W6S8ujiRp8Vkcv2RuY=
+		TEC0RN0ZV52wpoT77Dx2GiHymVs=
 		</data>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -111,11 +115,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			DNRFn+5SMw7ZiiYVo5Iq2YT9Y80=
+			1NY0Uc4UMy7TcT6N0IZfRJCRFp0=
 			</data>
 			<key>hash2</key>
 			<data>
-			bcNBBuKZzpXJdbzHvJlvHo0xgF20Oqwip7kqfme09PE=
+			Rar8qoN0q+3OmC8CrxESEhe3q3hMvWipjT1Cm5nIgA0=
 			</data>
 		</dict>
 		<key>flutter_assets/FontManifest.json</key>
@@ -272,6 +276,17 @@
 			x6mRF0sPPmYiNisdsG1HJobt6skQhsI39r6rR5/PD/g=
 			</data>
 		</dict>
+		<key>flutter_assets/assets/imgs/hallhub.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			TUW1ATuv0qn+vZCP91Lg7jaI+pw=
+			</data>
+			<key>hash2</key>
+			<data>
+			b6xBb7yTIaHPiXA55wpwmef8f+DWWieDcIDJrhunJ7Q=
+			</data>
+		</dict>
 		<key>flutter_assets/assets/imgs/kisspng-table-tennis-racket-double-happiness-shanghai-ball-ping-pong-table-5a7848a5464b20.3884973515178323572879.jpg</key>
 		<dict>
 			<key>hash</key>
@@ -342,11 +357,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			ZIrHpfVn+W6S8ujiRp8Vkcv2RuY=
+			TEC0RN0ZV52wpoT77Dx2GiHymVs=
 			</data>
 			<key>hash2</key>
 			<data>
-			Yl2JZ8NYc2O828Xdmmf2PJ+18YjTngLQoyMhU6/eRlo=
+			V6md7r7NFnuPZGSpsaWxMPoAlmZDW33N1XEZM6wnlaY=
 			</data>
 		</dict>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>

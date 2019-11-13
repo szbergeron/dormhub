@@ -1,3 +1,5 @@
+import 'package:dormshub/views/admin/admin_addevent.dart';
+import 'package:dormshub/views/admin/admin_homescreen.dart';
 import 'package:flutter/material.dart';
 
 class AdminHome extends StatelessWidget {
@@ -24,14 +26,15 @@ class AdminHome extends StatelessWidget {
                 IconButton(
                   padding: EdgeInsets.all(5.0),
                   icon: Icon(Icons.add,color: Colors.white,),
-                  onPressed: () {
-                    // Implement navigation to shopping cart page here...
-                    print('Click Message');
-                  },
+                  onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => AddEvent(),
+                    ),
+                  ),
                 ),
               ],
             ),
-      body: Text("ieodj"),
+      body: AdminHomeScreen(),
     );
   }
 }
