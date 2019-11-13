@@ -1,3 +1,4 @@
+import 'package:dormshub/views/admin/admin_login.dart';
 import 'package:flutter/material.dart';
 import 'package:dormshub/custom/custom_footer.dart';
 import 'package:dormshub/login.dart';
@@ -25,16 +26,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       _animationName = "animate";
     });
   }
-  void _animOpacity()
-  {
-     setState(() {
+
+  void _animOpacity() {
+    setState(() {
       // _events = result["name"];
       _animOP = true;
       _animOP2 = true;
       _animOP3 = true;
-
     });
-
   }
 
   @override
@@ -44,7 +43,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       _heigth = 150;
     }
     _animOpacity();
-    
 
     return Container(
       child: Scaffold(
@@ -61,68 +59,80 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         //     ],
         //   ),
         // ),
-        body: Center(
-            child: Column(
+        body: Column(
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.fromLTRB(25, 100, 25, 25),
-              child: Container(
-                child: FlareActor(
-                  'assets/anim/mydorm.flr',
-                  alignment: Alignment.center,
-                  fit: BoxFit.contain,
-                  animation: _animationName,
-                ),
-                width: _width,
-                height: _heigth,
-              ),
-              // child: Image.asset(
-              //   "assets/imgs/logo.png",
+            Center(
+                child: Column(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(25, 100, 25, 25),
+                  child: Container(
+                    child: FlareActor(
+                      'assets/anim/mydorm.flr',
+                      alignment: Alignment.center,
+                      fit: BoxFit.contain,
+                      animation: _animationName,
+                    ),
+                    width: _width,
+                    height: _heigth,
+                  ),
+                  // child: Image.asset(
+                  //   "assets/imgs/logo.png",
 
-              //   width: _width,
-              //   height: _heigth,
-              //   fit: BoxFit.contain,
-              // ),
-            ),
-            
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Center(
-                child: Text(
-                  "Choose a campus:",
-                  style: TextStyle(
-                    color: Color(0xff0044bb),
-                    fontSize: 23,
-                  ),
-                  textAlign: TextAlign.center,
+                  //   width: _width,
+                  //   height: _heigth,
+                  //   fit: BoxFit.contain,
+                  // ),
                 ),
-              ),
-            ),
-           
-             DropDownButton(),
-            Padding(
-              padding: EdgeInsets.all(70),
-            ),
-           
-              MaterialButton(
-                onPressed: () => Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => HallSelectionPage(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Center(
+                    child: Text(
+                      "Choose a campus:",
+                      style: TextStyle(
+                        color: Color(0xff0044bb),
+                        fontSize: 23,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ),
-                minWidth: 100,
-                height: 40,
-                color: Color(0xff0044bb),
-                textColor: Colors.white,
-                child: Text("Continue"),
-              ),
-          
+                DropDownButton(),
+                Padding(
+                  padding: EdgeInsets.all(70),
+                ),
+                MaterialButton(
+                  onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => HallSelectionPage(),
+                    ),
+                  ),
+                  minWidth: 100,
+                  height: 40,
+                  color: Color(0xff0044bb),
+                  textColor: Colors.white,
+                  child: Text("Continue"),
+                ),
+                Padding(padding: EdgeInsets.all(10),),
+                GestureDetector(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text("Admin Login",style: TextStyle(color: Colors.black,fontSize: 20),),
+                        
+                      ],
+                    ),
+                    onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => AdminLogin(),
+                        )))
+              ],
+            )
+
+                // <-- Built with StreamBuilder
+                // <-- Built with StatefulWidget
+                ),
           ],
-        )
-
-            // <-- Built with StreamBuilder
-            // <-- Built with StatefulWidget
-            ),
+        ),
         bottomNavigationBar: CustomFooter(),
       ),
     );
