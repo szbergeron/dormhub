@@ -10,28 +10,45 @@ class AdminLogin extends StatefulWidget {
 }
 
 class _AdminLoginState extends State<AdminLogin> {
- final BaseAuth myauth = new Auth();
+  final BaseAuth myauth = new Auth();
   final emailcontroller = TextEditingController();
-  final passwordcontroller = TextEditingController(); 
-  String _errorMessage ="";
- void _validateAndSubmit() async
- {
-   try{
-    String userId = await myauth.signIn(emailcontroller.text, passwordcontroller.text);
-    print(userId);
-    print("success");
+  final passwordcontroller = TextEditingController();
+  String _errorMessage = "";
+  bool _isLoading = false;
+  @override
+  void initState() {
+    _errorMessage = "";
+    _isLoading = false;
 
-   }catch(e)
-   {
+    super.initState();
+  }
+
+  void _validateAndSubmit() async {
+    setState(() {
+      _errorMessage = "";
+      _isLoading = true;
+    });
+    try {
+      String userId =
+          await myauth.signIn(emailcontroller.text, passwordcontroller.text);
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => AdminHome(),
+        ),
+      );
+
       setState(() {
-         
-          _errorMessage = e.message;
-         
-        });
+        _errorMessage = "Success";
+        _isLoading = false;
+      });
+    } catch (e) {
+      setState(() {
+        _isLoading = false;
+        _errorMessage = e.message;
+      });
+    }
+  }
 
-   }
-   
- }
   @override
   Widget build(BuildContext context) {
     final logo = Hero(
@@ -39,7 +56,11 @@ class _AdminLoginState extends State<AdminLogin> {
       child: CircleAvatar(
         backgroundColor: Colors.transparent,
         radius: 100.0,
-        child: Image.asset('assets/imgs/hallhub.png',width: 500,height: 500,),
+        child: Image.asset(
+          'assets/imgs/hallhub.png',
+          width: 500,
+          height: 500,
+        ),
       ),
     );
 
@@ -47,10 +68,9 @@ class _AdminLoginState extends State<AdminLogin> {
       keyboardType: TextInputType.emailAddress,
       autofocus: false,
       //initialValue: 'hubbard@unh.edu',
-       controller: emailcontroller,
+      controller: emailcontroller,
       decoration: InputDecoration(
         hintText: 'Email',
-      
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
       ),
@@ -65,6 +85,7 @@ class _AdminLoginState extends State<AdminLogin> {
         hintText: 'Password',
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
+        //focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),hoverColor: Colors.green,
       ),
     );
 
@@ -80,7 +101,7 @@ class _AdminLoginState extends State<AdminLogin> {
         //               builder: (context) => AdminHome(),
         //             ),
         //           )
-                 
+
         ,
         padding: EdgeInsets.all(12),
         color: Color(0xff0044bb),
@@ -112,11 +133,23 @@ class _AdminLoginState extends State<AdminLogin> {
             loginButton,
             forgotLabel,
             showErrorMessage(),
+            _showCircularProgress(),
           ],
         ),
       ),
     );
   }
+
+  Widget _showCircularProgress() {
+    if (_isLoading) {
+      return Center(child: CircularProgressIndicator());
+    }
+    return Container(
+      height: 0.0,
+      width: 0.0,
+    );
+  }
+
   Widget showErrorMessage() {
     if (_errorMessage.length > 0 && _errorMessage != null) {
       return new Text(
@@ -134,5 +167,3 @@ class _AdminLoginState extends State<AdminLogin> {
     }
   }
 }
-
-
