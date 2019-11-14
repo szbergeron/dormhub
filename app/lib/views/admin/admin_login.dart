@@ -1,6 +1,7 @@
+import 'package:dormshub/auth/authentication.dart';
 import 'package:dormshub/views/admin/admin_home.dart';
 import 'package:flutter/material.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
 
 class AdminLogin extends StatefulWidget {
   static String tag = 'login-page';
@@ -9,6 +10,28 @@ class AdminLogin extends StatefulWidget {
 }
 
 class _AdminLoginState extends State<AdminLogin> {
+ final BaseAuth myauth = new Auth();
+  final emailcontroller = TextEditingController();
+  final passwordcontroller = TextEditingController(); 
+  String _errorMessage ="";
+ void _validateAndSubmit() async
+ {
+   try{
+    String userId = await myauth.signIn(emailcontroller.text, passwordcontroller.text);
+    print(userId);
+    print("success");
+
+   }catch(e)
+   {
+      setState(() {
+         
+          _errorMessage = e.message;
+         
+        });
+
+   }
+   
+ }
   @override
   Widget build(BuildContext context) {
     final logo = Hero(
@@ -23,8 +46,8 @@ class _AdminLoginState extends State<AdminLogin> {
     final email = TextFormField(
       keyboardType: TextInputType.emailAddress,
       autofocus: false,
-      initialValue: 'hubbard@unhdorm.com',
-       
+      //initialValue: 'hubbard@unh.edu',
+       controller: emailcontroller,
       decoration: InputDecoration(
         hintText: 'Email',
       
@@ -35,8 +58,9 @@ class _AdminLoginState extends State<AdminLogin> {
 
     final password = TextFormField(
       autofocus: false,
-      initialValue: 'hubbard',
+      //initialValue: '!Hubbard1',
       obscureText: true,
+      controller: passwordcontroller,
       decoration: InputDecoration(
         hintText: 'Password',
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
@@ -50,12 +74,12 @@ class _AdminLoginState extends State<AdminLogin> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(24),
         ),
-        onPressed:
-         () => Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => AdminHome(),
-                    ),
-                  )
+        onPressed: _validateAndSubmit
+        //  () => Navigator.of(context).push(
+        //             MaterialPageRoute(
+        //               builder: (context) => AdminHome(),
+        //             ),
+        //           )
                  
         ,
         padding: EdgeInsets.all(12),
@@ -86,10 +110,29 @@ class _AdminLoginState extends State<AdminLogin> {
             password,
             SizedBox(height: 24.0),
             loginButton,
-            forgotLabel
+            forgotLabel,
+            showErrorMessage(),
           ],
         ),
       ),
     );
   }
+  Widget showErrorMessage() {
+    if (_errorMessage.length > 0 && _errorMessage != null) {
+      return new Text(
+        _errorMessage,
+        style: TextStyle(
+            fontSize: 13.0,
+            color: Colors.red,
+            height: 1.0,
+            fontWeight: FontWeight.w300),
+      );
+    } else {
+      return new Container(
+        height: 0.0,
+      );
+    }
+  }
 }
+
+
