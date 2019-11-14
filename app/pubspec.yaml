@@ -38,6 +38,7 @@ dependencies:
   flutter_datetime_picker: ^1.2.8
   jiffy: ^2.1.1
   firebase_storage: ^3.0.8
+  introduction_screen: ^1.0.7
 
 dev_dependencies:
   flutter_test:

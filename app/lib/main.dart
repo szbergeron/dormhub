@@ -1,3 +1,4 @@
+import 'package:dormshub/views/intro.dart';
 import 'package:flutter/material.dart';
 import 'package:dormshub/views/welcome.dart';
 import 'views/home.dart';
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
         
         primarySwatch: Colors.blue,
       ),
-      home: WelcomeScreen()// HomePage(),
+      home: IntroductionPage()// HomePage(),
     );
   }
 }
