@@ -1,3 +1,4 @@
+import 'package:dormshub/views/welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:introduction_screen/introduction_screen.dart' as page;
@@ -41,14 +42,15 @@ class IntroductionPage extends StatelessWidget {
         imagePadding: EdgeInsets.zero,
       ),
     ),
+    
     PageViewModel(
-      title: "Attend events and socials",
+      title: "Build your community",
       body:
-          "Never miss a social again! With HallHub all events are there for you",
+          "See what's going on in your building in realtime and make sure to enable notifications",
       image: Padding(
         padding: const EdgeInsets.fromLTRB(0, 100, 0, 0),
         child: Center(
-          child: Image.asset("assets/imgs/welcome2.png", height: 205.0),
+          child: Image.asset("assets/imgs/welcome3.png", height: 205.0),
         ),
       ),
       decoration: const PageDecoration(
@@ -59,20 +61,39 @@ class IntroductionPage extends StatelessWidget {
         imagePadding: EdgeInsets.zero,
       ),
     ),
+    PageViewModel(
+      title: "Find all information you need",
+      body:
+          "Get access to all information regarding your engaged space, press 'Done' to start exploring",
+      image: Padding(
+        padding: const EdgeInsets.fromLTRB(0, 100, 0, 0),
+        child: Center(
+          child: Image.asset("assets/imgs/welcome4.png", height: 205.0),
+        ),
+      ),
+      decoration: const PageDecoration(
+        titleTextStyle: TextStyle(fontSize: 28.0, fontWeight: FontWeight.w700),
+        bodyTextStyle: TextStyle(fontSize: 19.0),
+        descriptionPadding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
+        pageColor: Colors.white,
+        imagePadding: EdgeInsets.zero,
+      ),
+    ),
+    
   ];
 
   @override
   Widget build(BuildContext context) {
     return IntroductionScreen(
       pages: list,
-      onDone: () {
-        // When done button is press
-      },
+      onDone:  () => Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) => WelcomeScreen(),
+                        )),
       onSkip: () {
         // You can also override onSkip callback
       },
       showSkipButton: true,
-      skip: const Text("Skip"),
+      skip: const Text(""),
       next: const Icon(Icons.arrow_forward),
       done: const Text("Done", style: TextStyle(fontWeight: FontWeight.w600)),
       dotsDecorator: DotsDecorator(
