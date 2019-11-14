@@ -17,6 +17,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   String  hall;
  _HomePageState(this.hall); 
+ 
 
  Widget getPage(){
    if(_myIndex == 0)
@@ -39,7 +40,6 @@ class _HomePageState extends State<HomePage> {
     HomeScreen(),
     Socials(),
     GiraGira(),
-
     Profile(),
   ];
   

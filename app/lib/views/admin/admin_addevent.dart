@@ -1,5 +1,13 @@
+import 'package:dormshub/model/social.dart';
 import 'package:flutter/material.dart';
+import 'dart:io';
+import 'dart:convert';
+import 'package:image_picker/image_picker.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:jiffy/jiffy.dart';
 
+import 'package:firebase_storage/firebase_storage.dart';
 class AddEvent extends StatefulWidget {
  
 
@@ -9,8 +17,63 @@ class AddEvent extends StatefulWidget {
 
 class _AddEventState extends State<AddEvent> {
 
-   final name = TextEditingController();
+  File file;
+  final databaseReference = Firestore.instance;
+
+
+  final name = TextEditingController();
   final desc = TextEditingController();
+  String _chooseDate = "Click here to choose a date";
+  String imgURL = "";
+  bool _unlockedB = false;
+  
+  
+
+  void createRecord() async {
+  await databaseReference.collection("halls")
+      .document("Hubbard Hall")
+      .collection("socials")
+      .add({"name":name.text,"description":desc.text,"date": _chooseDate,"img":imgURL});   
+}
+
+Future<String> _pickSaveImage() async {
+  File imageFile = await ImagePicker.pickImage(source: ImageSource.gallery);
+  StorageReference ref =
+    FirebaseStorage.instance.ref().child("Hubbard Hall").child("social1.jpg");
+  StorageUploadTask uploadTask = ref.putFile(imageFile);
+  final StorageTaskSnapshot downloadUrl = 
+  (await uploadTask.onComplete);
+  final String url = (await downloadUrl.ref.getDownloadURL());
+  print(url);
+  imgURL = url;
+  setState(() {
+     _unlockedB = true;
+  });
+ 
+
+
+  
+  return url;
+}
+String readableDate()
+{ 
+  if(_chooseDate != "Click here to choose a date")
+  {
+   
+    return  Jiffy({
+  "year": int.parse(_chooseDate.substring(0,4)),
+  "month":int.parse( _chooseDate.substring(5,7)),
+  "day": int.parse(_chooseDate.substring(8,10)),
+  "hour": int.parse(_chooseDate.substring(11,13)),
+  "minutes":int.parse(_chooseDate.substring(14,16)),
+}).yMMMMEEEEdjm.toString();
+  }else
+  {
+    return _chooseDate;
+  }
+  
+}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,12 +113,12 @@ class _AddEventState extends State<AddEvent> {
           ),
         ),
       ),
-      ListTile(
+      if (_unlockedB != true) ListTile(
         leading: const Icon(Icons.image),
         title:   Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[RaisedButton(
-                onPressed: (){},
+                onPressed: _pickSaveImage,
                 child: Text('Choose Image'),
               ),
               SizedBox(width: 10.0),
@@ -63,18 +126,57 @@ class _AddEventState extends State<AddEvent> {
                 onPressed: (){},
                 child: Text('Upload Image'),
               ),
+            ])) else  ListTile(
+        leading: const Icon(Icons.image),
+        title:   Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[Text("Image Uploaded"),Padding(padding:EdgeInsets.all(10)), GestureDetector(onTap: () { imgURL = ""; setState(() {
+     _unlockedB = false;
+  });} , child: Icon(Icons.delete,color: Colors.red,))
             ])),
-      MaterialButton(
-                  onPressed: () => print(name.text),
-                  minWidth: 100,
-                  height: 40,
-                  color: Color(0xff0044bb),
-                  textColor: Colors.white,
-                  child: Text("Continue"),
-                ),
+     
+    ListTile(
+        leading: const Icon(Icons.date_range),
+        title:  FlatButton(
+    onPressed: () {
+        DatePicker.showDateTimePicker(context,
+                              showTitleActions: true,
+                              minTime: DateTime(2019, 11, 13,1,1,1), onChanged: (date) {
+                            setState(() {
+                              _chooseDate = date.toString();
+                            });
+                          }, onConfirm: (date) {
+                            setState(() {
+                              _chooseDate = date.toString().substring(0,16);
+                            });
+                            print('confirm $date');
+                            
+                          }, currentTime: DateTime.now(), locale: LocaleType.en);
+    },
+    
+    child: Text(
+     
+        readableDate(),
+        
+      
+        style: TextStyle(color: Color(0xff0044bb)),
+    )),
+      ),
+       MaterialButton(
+      onPressed: () { createRecord();},
+      minWidth: 100,
+      height: 40,
+      color: Color(0xff0044bb),
+      textColor: Colors.white,
+      child: Text("Post"),
+    ),
+
+
       
     ],
   ),
     );
   }
 }
+
+

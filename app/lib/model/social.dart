@@ -10,4 +10,10 @@ class Social {
 
   Social(
       {this.title, this.description,this.date});
+
+      Map<String,dynamic> toMap(){
+       var map = new Map();
+        map = {"title": title, "description": description, "date":date};
+        return map;
+      }
 }
