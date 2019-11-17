@@ -1,3 +1,5 @@
+import 'package:dormshub/views/admin/admin_login.dart';
+
 import '../theme/themes.dart';
 import 'package:day_night_switch/day_night_switch.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +40,13 @@ class _SettingsPageState extends State<SettingsPage> {
                 },
               ),
             ),
-          )
+          ),
+          Divider(color: Colors.grey[300],),
+          ListTile(title: Text('Admin'),onTap: ()=>
+            Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => AdminLogin(),
+                        )),
+          ),
         ],
       ),
     );

@@ -1,14 +1,22 @@
+import 'package:dormshub/model/social.dart';
 import 'package:flutter/material.dart';
 import 'package:dormshub/views/places.dart';
 import 'package:dormshub/views/icon_bagde.dart';
-
+import 'package:intl/intl.dart';
 
 class Details extends StatefulWidget {
   @override
-  _DetailsState createState() => _DetailsState();
+  _DetailsState createState() => _DetailsState(social: social);
+
+  Social social;
+
+  Details({this.social});
 }
 
 class _DetailsState extends State<Details> {
+  Social social;
+  _DetailsState({this.social});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,65 +25,42 @@ class _DetailsState extends State<Details> {
           icon: Icon(
             Icons.arrow_back,
           ),
-          onPressed: ()=>Navigator.pop(context),
+          onPressed: () => Navigator.pop(context),
         ),
-
         actions: <Widget>[
           IconButton(
             icon: IconBadge(
               icon: Icons.notifications_none,
             ),
-            onPressed: (){},
+            onPressed: () {},
           ),
         ],
       ),
 
-      body:  ListView(
+      body: ListView(
         children: <Widget>[
           SizedBox(height: 10),
           Container(
-            padding: EdgeInsets.only(left: 20),
+            padding: EdgeInsets.only(left: 0),
             height: 250,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              primary: false,
-              itemCount: places == null ? 0 : places.length,
-              itemBuilder: (BuildContext context, int index) {
-                Map place = places[index];
-
-                return Padding(
-                  padding: EdgeInsets.only(right: 10),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: Image.asset(
-                      "${place["img"]}",
-                      height: 250,
-                      width: MediaQuery.of(context).size.width-40,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                );
-              },
+            child: Image.network(
+              social.img,
             ),
           ),
-
-
           SizedBox(height: 20),
-
           ListView(
             padding: EdgeInsets.symmetric(horizontal: 20),
             primary: false,
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             children: <Widget>[
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Container(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      "${places[0]["name"]}",
+                      social.title,
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
                         fontSize: 20,
@@ -84,18 +69,14 @@ class _DetailsState extends State<Details> {
                       textAlign: TextAlign.left,
                     ),
                   ),
-
                   IconButton(
                     icon: Icon(
                       Icons.bookmark,
                     ),
-                    onPressed: (){},
+                    onPressed: () {},
                   ),
-
-
                 ],
               ),
-
               Row(
                 children: <Widget>[
                   Icon(
@@ -103,9 +84,7 @@ class _DetailsState extends State<Details> {
                     size: 14,
                     color: Colors.blueGrey[300],
                   ),
-
                   SizedBox(width: 3),
-
                   Container(
                     alignment: Alignment.centerLeft,
                     child: Text(
@@ -121,28 +100,78 @@ class _DetailsState extends State<Details> {
                   ),
                 ],
               ),
-
-              SizedBox(height: 20),
-
-              Container(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "${places[0]["price"]}",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 17,
+              SizedBox(height: 10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Container(
+                        alignment: Alignment.bottomLeft,
+                        child: Text(
+                          "Date",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
+                          maxLines: 1,
+                          textAlign: TextAlign.left,
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Container(
+                        alignment: Alignment.bottomLeft,
+                        child: Text(
+                          parseDate(social.date),
+                          style: TextStyle(
+                            fontWeight: FontWeight.normal,
+                            fontSize: 15,
+                          ),
+                          textAlign: TextAlign.left,
+                        ),
+                      ),
+                    ],
                   ),
-                  maxLines: 1,
-                  textAlign: TextAlign.left,
-                ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: <Widget>[
+                      Container(
+                        alignment: Alignment.bottomLeft,
+                        child: Text(
+                          "Time",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
+                          maxLines: 1,
+                          textAlign: TextAlign.left,
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Container(
+                        alignment: Alignment.bottomLeft,
+                        child: Text(
+                          parseTime(social.date),
+                          style: TextStyle(
+                            fontWeight: FontWeight.normal,
+                            fontSize: 15,
+                          ),
+                          textAlign: TextAlign.left,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
-
-              SizedBox(height: 40),
-
+              SizedBox(height: 10),
               Container(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  "Details",
+                  "Description",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
@@ -151,13 +180,11 @@ class _DetailsState extends State<Details> {
                   textAlign: TextAlign.left,
                 ),
               ),
-
               SizedBox(height: 10),
-
               Container(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  "${places[0]["details"]}",
+                  social.description,
                   style: TextStyle(
                     fontWeight: FontWeight.normal,
                     fontSize: 15,
@@ -165,21 +192,18 @@ class _DetailsState extends State<Details> {
                   textAlign: TextAlign.left,
                 ),
               ),
-
               SizedBox(height: 10),
-
-
             ],
           ),
         ],
       ),
 
-
       floatingActionButton: FloatingActionButton(
         child: Icon(
-          Icons.airplanemode_active,
+          Icons.favorite,
+          color: Theme.of(context).canvasColor,
         ),
-        onPressed: (){},
+        onPressed: () {},
       ),
 
 //      bottomNavigationBar: Container(
@@ -197,5 +221,16 @@ class _DetailsState extends State<Details> {
 //        ),
 //      ),
     );
+  }
+
+  String parseDate(String date) {
+    var parsedDate = DateTime.parse(date);
+    String month = DateFormat("yMMMMEEEEd").format(parsedDate);
+    return month;
+  }
+  String parseTime(String date) {
+    var parsedDate = DateTime.parse(date);
+    String month = DateFormat("jm").format(parsedDate);
+    return month;
   }
 }

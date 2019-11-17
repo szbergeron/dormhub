@@ -42,11 +42,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
    
 
      _readHallPreference().then((value) {
+       if(value!=null)
+       {
+         
+       
        print("awijdwoaawkdijawoijdadaijd");
       Navigator.of(context).pushAndRemoveUntil( MaterialPageRoute(
                           builder: (context) => HomePage(hall: value),
                         ), (e) => false);
-    });
+    }});
    
     if (MediaQuery.of(context).size.width < 410) {
       _width = 150;
@@ -155,6 +159,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         final prefs = await SharedPreferences.getInstance();
         final key = 'hall_selected';
         final value = prefs.getString(key);
+        if(value == null || value == "")
+        {
+          return null;
+        }
+
         
          return value;
       }
