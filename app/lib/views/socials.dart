@@ -68,7 +68,7 @@ class CardSocial extends StatelessWidget {
       margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
       
       child: Container(
-        decoration: BoxDecoration(color:Colors.white,// LinearGradient(begin: Alignment.topRight,end: Alignment.bottomLeft, stops: [0.1,0.6,0.9],
+        decoration: BoxDecoration(// LinearGradient(begin: Alignment.topRight,end: Alignment.bottomLeft, stops: [0.1,0.6,0.9],
                       /*colors: [Colors.cyan,Colors.blue,Colors.blue])*/borderRadius: BorderRadius.circular(15)),
         child: ListTileSocial(social:social),
       ),
@@ -90,24 +90,24 @@ class ListTileSocial extends StatelessWidget {
           padding: EdgeInsets.only(right: 8.0),
           decoration: new BoxDecoration(
               border: new Border(
-                  right: new BorderSide(width: 1.0, color: Color(0xfff77a05)))),
+                  right: new BorderSide(width: 1.0, ))),
           child: Text(
          social.date,
-          style: TextStyle(color: Color(0xff0044bb), fontWeight: FontWeight.bold,fontSize: 20),
+          style: TextStyle( fontWeight: FontWeight.bold,fontSize: 20),
         )),
         title: Text(
          social.title,
-          style: TextStyle(color: Color(0xff0044bb), fontWeight: FontWeight.bold,fontSize: 20),
+          style: TextStyle(color: Theme.of(context).accentColor, fontWeight: FontWeight.bold,fontSize: 20),
         ),
         // subtitle: Text("Intermediate", style: TextStyle(color: Colors.white)),
 
         subtitle: 
             //Icon(Icons.description, color: Colors.yellowAccent),
-            Text(social.description, style: TextStyle(color: Color(0xff000000)))
+            Text(social.description)
           
         ,
         trailing:
-            Icon(Icons.keyboard_arrow_right, color: Color(0xff0044bb), size: 30.0));
+            Icon(Icons.keyboard_arrow_right, size: 30.0));
   }
 }
      

@@ -93,17 +93,14 @@ class _GiraGiraState extends State<GiraGira> {
                             return Container(
                                 width: MediaQuery.of(context).size.width,
                                 margin: EdgeInsets.symmetric(horizontal: 5.0),
-                                decoration: BoxDecoration(color: Color(0xffdcdedf)),
+                               // decoration: BoxDecoration(color: Color(0xffdcdedf)),
                                 child: Column(
                                   children: <Widget>[
                                     Text(
                                       document["name"],
                                       style: TextStyle(fontSize: 30.0),
                                     ),
-                                   
-                                    
                                   
-          
                                     Image.network(document["img"])
                                   ],
                                 ));

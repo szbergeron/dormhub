@@ -61,14 +61,14 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-                backgroundColor: Color(0xff0044bb),
+               // backgroundColor: Color(0xff0044bb),
                 elevation: 8,
               title: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   Text(
                     hall,
-                    style: TextStyle(color: Colors.white),
+                    //style: TextStyle(color: Colors.white),
                   
                   ),
                 ],
@@ -76,7 +76,7 @@ class _HomePageState extends State<HomePage> {
               actions: <Widget>[
                 IconButton(
                   padding: EdgeInsets.all(5.0),
-                  icon: Icon(Icons.search,color: Colors.white,),
+                  icon: Icon(Icons.search,),
                   onPressed: () {
                     // Implement navigation to shopping cart page here...
                     print('Click Search');
@@ -84,7 +84,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 IconButton(
                   padding: EdgeInsets.all(5.0),
-                  icon: Icon(Icons.settings,color: Colors.white,),
+                  icon: Icon(Icons.settings,),
                   onPressed: () {
                     Navigator.push(
                           context,

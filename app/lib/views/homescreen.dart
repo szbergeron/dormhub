@@ -60,10 +60,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text('Events this week',
-                          style: TextStyle(color: Colors.blueAccent)),
+                          style: TextStyle(color: Theme.of(context).dividerColor)),
                       Text(_events.toString(),
                           style: TextStyle(
-                              color: Colors.black,
+                             
                               fontWeight: FontWeight.w700,
                               fontSize: 34.0))
                     ],
@@ -99,11 +99,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   Padding(padding: EdgeInsets.only(bottom: 16.0)),
                   Text('Community',
                       style: TextStyle(
-                          color: Colors.black,
+                         
                           fontWeight: FontWeight.w700,
                           fontSize: 24.0)),
                   Text('Images, Videos',
-                      style: TextStyle(color: Colors.black45)),
+                      ),
                 ]),
           ),
         ),
@@ -125,11 +125,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   Padding(padding: EdgeInsets.only(bottom: 16.0)),
                   Text('Notification',
                       style: TextStyle(
-                          color: Colors.black,
+                          
                           fontWeight: FontWeight.w700,
                           fontSize: 24.0)),
                   Text('Ping pong tournament ',
-                      style: TextStyle(color: Colors.black45)),
+                      ),
                 ]),
           )
         ,onTap: ()=>print("me")),
@@ -158,7 +158,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           style: TextStyle(color: Colors.orange)),
                       Text("November Week 1",
                           style: TextStyle(
-                              color: Colors.black,
+                             
                               fontWeight: FontWeight.w700,
                               fontSize: 25.0))
                     ],
@@ -188,9 +188,9 @@ class BuildTileM extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-        elevation: 14.0,
+        elevation: 10.0,
         borderRadius: BorderRadius.circular(12.0),
-        shadowColor: Color(0x802196F3),
+        
         child: InkWell(
             // Do onTap() if it isn't null, otherwise do print()
             onTap: onTap != null
