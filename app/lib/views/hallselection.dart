@@ -7,6 +7,8 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:dormshub/views/home.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'package:shared_preferences/shared_preferences.dart';
+
 class HallSelectionPage extends StatefulWidget {
   HallSelectionPage({Key key}) : super(key: key);
 
@@ -43,6 +45,7 @@ class _HallSelectionPageState extends State<HallSelectionPage> {
   final databaseReference = Firestore.instance;
   Future<Map> getData(String hallselected) async {
     print("here");
+    _saveSelection(hallselected);
     var result;
     await databaseReference
         .collection("halls")
@@ -82,7 +85,9 @@ class _HallSelectionPageState extends State<HallSelectionPage> {
                       style: TextStyle(fontSize: 18),
                     ),
                     onTap: () => {
+                      
                       getData(halls[index]),
+
                       Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -95,6 +100,14 @@ class _HallSelectionPageState extends State<HallSelectionPage> {
       bottomNavigationBar: CustomFooter(),
     );
   }
+
+  _saveSelection(String hall) async {
+        final prefs = await SharedPreferences.getInstance();
+        final key = 'hall_selected';
+        final value = hall;
+        prefs.setString(key, value);
+        print('saved $value');
+      }
 }
 
 class Dosmt extends StatelessWidget {

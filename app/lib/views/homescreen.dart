@@ -19,14 +19,14 @@ class _HomeScreenState extends State<HomeScreen> {
   
   
 
-  void getData(myhall) async {
+  void _getData(myhall) async {
     var result;
     await databaseReference
         .collection("halls")
         .document(myhall)
         .get()
         .then((DocumentSnapshot data) => result = data);
-        print(result);
+       
     if (!mounted) {
       return;
     }
@@ -39,8 +39,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print(this.hall);
-    getData(hall);
+    
+    _getData(hall);
 
     return StaggeredGridView.count(
       crossAxisCount: 2,
@@ -81,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         BuildTileM(
-          onTap: getData,
+          onTap: _getData,
           child: Padding(
             padding: const EdgeInsets.all(24.0),
             child: Column(

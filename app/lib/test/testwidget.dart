@@ -104,7 +104,7 @@ class _GiraGiraState extends State<GiraGira> {
                                     
                                   
           
-                                   // Image.network(document["image"])
+                                    Image.network(document["img"])
                                   ],
                                 ));
                           },

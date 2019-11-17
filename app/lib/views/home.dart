@@ -1,4 +1,5 @@
 import 'package:dormshub/test/testwidget.dart';
+import 'package:dormshub/views/settings.dart';
 import 'package:flutter/material.dart';
 // import 'package:unhdorm/buildinglist.dart';
 import 'package:dormshub/views/homescreen.dart';
@@ -85,6 +86,11 @@ class _HomePageState extends State<HomePage> {
                   padding: EdgeInsets.all(5.0),
                   icon: Icon(Icons.settings,color: Colors.white,),
                   onPressed: () {
+                    Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  SettingsPage()));
                     // Implement navigation to shopping cart page here...
                     print('Click Message');
                   },
@@ -94,7 +100,7 @@ class _HomePageState extends State<HomePage> {
       body: getPage(),
       bottomNavigationBar: BottomNavigationBar(
         onTap: _onItemTapped,
-        backgroundColor: Colors.white,
+       
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.home), title: Text("Home")),
           BottomNavigationBarItem(icon: Icon(Icons.people), title: Text("Socials")),
@@ -105,7 +111,7 @@ class _HomePageState extends State<HomePage> {
           )
         ],
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.blueAccent,
+        
         currentIndex: _myIndex,
       ),
     );

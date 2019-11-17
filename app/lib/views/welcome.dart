@@ -7,6 +7,7 @@ import 'package:dormshub/register.dart';
 import 'package:dormshub/views/hallselection.dart';
 import 'package:dormshub/views/home.dart';
 import 'package:flare_flutter/flare_actor.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class WelcomeScreen extends StatefulWidget {
   @override
@@ -38,6 +39,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+   
+
+     _readHallPreference().then((value) {
+       print("awijdwoaawkdijawoijdadaijd");
+      Navigator.of(context).pushAndRemoveUntil( MaterialPageRoute(
+                          builder: (context) => HomePage(hall: value),
+                        ), (e) => false);
+    });
+   
     if (MediaQuery.of(context).size.width < 410) {
       _width = 150;
       _heigth = 150;
@@ -113,13 +123,17 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   textColor: Colors.white,
                   child: Text("Continue"),
                 ),
-                Padding(padding: EdgeInsets.all(10),),
+                Padding(
+                  padding: EdgeInsets.all(10),
+                ),
                 GestureDetector(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Text("Admin Login",style: TextStyle(color: Colors.black,fontSize: 20),),
-                        
+                        Text(
+                          "Admin Login",
+                          style: TextStyle(color: Colors.black, fontSize: 20),
+                        ),
                       ],
                     ),
                     onTap: () => Navigator.of(context).push(MaterialPageRoute(
@@ -137,6 +151,13 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       ),
     );
   }
+   Future<String>_readHallPreference() async {
+        final prefs = await SharedPreferences.getInstance();
+        final key = 'hall_selected';
+        final value = prefs.getString(key);
+        
+         return value;
+      }
 }
 
 class DropDownButton extends StatefulWidget {
@@ -180,6 +201,8 @@ class _DropDownButtonState extends State<DropDownButton> {
       ),
     );
   }
+
+ 
 }
 // class ListOfColleges extends StatelessWidget {
 //   @override
