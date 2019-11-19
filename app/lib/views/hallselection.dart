@@ -87,12 +87,11 @@ class _HallSelectionPageState extends State<HallSelectionPage> {
                     onTap: () => {
                       
                       getData(halls[index]),
+                      Navigator.of(context).pushAndRemoveUntil( MaterialPageRoute(
+                          builder: (context) => HomePage(hall: halls[index]),
+                        ), (e) => false)
 
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  HomePage(hall: halls[index])))
+                      
                     }, //push hall index too
                   );
                 })),

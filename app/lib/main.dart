@@ -1,6 +1,6 @@
-import 'package:dormshub/views/intro.dart';
+import 'package:dormshub/views/intro/intro.dart';
 import 'package:flutter/material.dart';
-import 'package:dormshub/views/welcome.dart';
+import 'package:dormshub/views/intro/welcome.dart';
 import 'views/home.dart';
 import 'login.dart';
 import 'package:flutter/services.dart';

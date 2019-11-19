@@ -7,17 +7,19 @@ final darkTheme = ThemeData(
   accentColor: Colors.white,
   accentIconTheme: IconThemeData(color: Colors.black),
   dividerColor: Colors.white,
+  indicatorColor: Colors.white
 );
 
 final lightTheme = ThemeData(
   primaryColor: Color(0xff0044bb), //unh blue
   brightness: Brightness.light,
   backgroundColor: Color(0xffffffff),
-  
+  cardColor: Colors.white,
   accentColor: Color(0xff0044bb), //dark blue
   accentIconTheme: IconThemeData(color: Colors.blue),
   
   dividerColor: Colors.blue,
+  indicatorColor: Colors.black
   
 );
 

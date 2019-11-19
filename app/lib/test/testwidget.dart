@@ -1,5 +1,6 @@
+import 'package:dormshub/custom/story_card.dart';
 import 'package:dormshub/model/social.dart';
-import 'package:dormshub/views/socials.dart';
+import 'package:dormshub/views/socials/socials.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_sparkline/flutter_sparkline.dart';
@@ -61,6 +62,7 @@ class _GiraGiraState extends State<GiraGira> {
     //socials.add(Social(title: s["name"], description: s["description"]));
     _doneLoading = true;
   }
+   
 
   final databaseReference = Firestore.instance;
 
@@ -69,46 +71,51 @@ class _GiraGiraState extends State<GiraGira> {
     //getData(hall);
     
       return Center(
-        child: StreamBuilder<QuerySnapshot>(
-            stream: Firestore.instance
-                .collection("halls")
-                .document("Hubbard Hall")
-                .collection("socials")
-                //.getDocuments(.getDocuments()
-                .snapshots(),
-            builder:
-                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-              if (snapshot.hasError)
-                return new Text('Error: ${snapshot.error}');
-              switch (snapshot.connectionState) {
-                case ConnectionState.waiting:
-                  return new Text('Loading...');
-                default:
-                  return new CarouselSlider(
-                      height: 400.0,
-                      items: snapshot.data.documents
-                        .map((DocumentSnapshot document) {
-                        return Builder(
-                          builder: (BuildContext context) {
-                            return Container(
-                                width: MediaQuery.of(context).size.width,
-                                margin: EdgeInsets.symmetric(horizontal: 5.0),
-                               // decoration: BoxDecoration(color: Color(0xffdcdedf)),
-                                child: Column(
-                                  children: <Widget>[
-                                    Text(
-                                      document["name"],
-                                      style: TextStyle(fontSize: 30.0),
-                                    ),
-                                  
-                                    Image.network(document["img"])
-                                  ],
-                                ));
-                          },
-                        );
-                      }).toList());
-              }
-            }),
+        child: Column(
+          children: <Widget>[
+            
+            StreamBuilder<QuerySnapshot>(
+                stream: Firestore.instance
+                    .collection("halls")
+                    .document("Hubbard Hall")
+                    .collection("socials")
+                    //.getDocuments(.getDocuments()
+                    .snapshots(),
+                builder:
+                    (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                  if (snapshot.hasError)
+                    return new Text('Error: ${snapshot.error}');
+                  switch (snapshot.connectionState) {
+                    case ConnectionState.waiting:
+                      return new Text('Loading...');
+                    default:
+                      return new CarouselSlider(
+                          height: 400.0,
+                          items: snapshot.data.documents
+                            .map((DocumentSnapshot document) {
+                            return Builder(
+                              builder: (BuildContext context) {
+                                return Container(
+                                    width: MediaQuery.of(context).size.width,
+                                    margin: EdgeInsets.symmetric(horizontal: 5.0),
+                                   // decoration: BoxDecoration(color: Color(0xffdcdedf)),
+                                    child: Column(
+                                      children: <Widget>[
+                                        Text(
+                                          document["name"],
+                                          style: TextStyle(fontSize: 30.0),
+                                        ),
+                                      
+                                        Image.network(document["img"])
+                                      ],
+                                    ));
+                              },
+                            );
+                          }).toList());
+                  }
+                }),
+          ],
+        ),
       );
     
   }

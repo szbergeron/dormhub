@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 // import 'package:unhdorm/buildinglist.dart';
 import 'package:dormshub/views/homescreen.dart';
 import 'package:dormshub/views/profile.dart';
-import 'package:dormshub/views/socials.dart';
+import 'package:dormshub/views/socials/socials.dart';
 
 class HomePage extends StatefulWidget {
   String hall = "";
@@ -25,6 +25,10 @@ class _HomePageState extends State<HomePage> {
    {
      print(hall);
       return HomeScreen(hall: hall,);
+   }
+   else if(_myIndex == 1)
+   {
+    return Socials(hall: hall,);
    }else if(_myIndex == 2)
    {
     return GiraGira(hall: hall,);

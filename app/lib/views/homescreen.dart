@@ -1,7 +1,9 @@
+import 'package:dormshub/custom/story_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sparkline/flutter_sparkline.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 
 class HomeScreen extends StatefulWidget {
   String hall = "";
@@ -16,9 +18,6 @@ class _HomeScreenState extends State<HomeScreen> {
   String hall;
   _HomeScreenState({this.hall});
   int _events = 0;
-  
-  
-
   void _getData(myhall) async {
     var result;
     await databaseReference
@@ -36,9 +35,12 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   final databaseReference = Firestore.instance;
+ 
+  
 
   @override
   Widget build(BuildContext context) {
+    
     
     _getData(hall);
 
@@ -80,6 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ]),
           ),
         ),
+        
         BuildTileM(
           onTap: _getData,
           child: Padding(
@@ -167,12 +170,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 ]),
           ),
         ),
+       
       ],
       staggeredTiles: [
         StaggeredTile.extent(2, 110.0),
         StaggeredTile.extent(1, 180.0),
         StaggeredTile.extent(1, 180.0),
         StaggeredTile.extent(2, 110.0),
+       
         
       ],
     );
@@ -188,9 +193,9 @@ class BuildTileM extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-        elevation: 10.0,
+        elevation: 3.0,
         borderRadius: BorderRadius.circular(12.0),
-        
+        color: Theme.of(context).cardColor,
         child: InkWell(
             // Do onTap() if it isn't null, otherwise do print()
             onTap: onTap != null

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:dormshub/views/details.dart';
+import 'package:dormshub/views/socials/details.dart';
 import 'package:dormshub/views/icon_bagde.dart';
 import 'package:dormshub/views/places.dart';
 

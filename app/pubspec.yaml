@@ -42,6 +42,7 @@ dependencies:
   shared_preferences: ^0.4.3
   provider: ^3.1.0
   day_night_switch:
+  story_view:
     
 dev_dependencies:
   

@@ -1,5 +1,5 @@
 import 'package:dormshub/views/admin/admin_login.dart';
-
+import 'package:dormshub/views/hallselection.dart';
 import '../theme/themes.dart';
 import 'package:day_night_switch/day_night_switch.dart';
 import 'package:flutter/material.dart';
@@ -41,12 +41,48 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
             ),
           ),
-          Divider(color: Colors.grey[300],),
-          ListTile(title: Text('Admin'),onTap: ()=>
-            Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => AdminLogin(),
-                        )),
+          Divider(
+            color: Colors.grey[300],
           ),
+          ListTile(
+            title: Text('Admin'),
+             contentPadding: const EdgeInsets.only(left: 16.0),
+            onTap: () => Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => AdminLogin(),
+            )),
+          ),
+          Divider(
+            color: Colors.grey[300],
+          ),
+          ListTile(
+            title: Text('Select different hall'),
+             contentPadding: const EdgeInsets.only(left: 16.0),
+            onTap: () => Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => HallSelectionPage(),
+            )),
+          ),
+          Divider(
+            color: Colors.grey[300],
+          ),ListTile(
+            title: Text('Notifications'),
+             contentPadding: const EdgeInsets.only(left: 16.0),
+            onTap: () => Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => HallSelectionPage(),
+            )),
+          ),
+          Divider(
+            color: Colors.grey[300],
+          ),ListTile(
+            title: Text('About us'),
+             contentPadding: const EdgeInsets.only(left: 16.0),
+            onTap: () => Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => HallSelectionPage(),
+            )),
+          ),
+          Divider(
+            color: Colors.grey[300],
+          ),
+          
         ],
       ),
     );
