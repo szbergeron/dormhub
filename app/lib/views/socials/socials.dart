@@ -39,7 +39,7 @@ class _SocialsState extends State<Socials> {
                   snapshot.data.documents.map((DocumentSnapshot document) {
                 return new CardSocial(
                     social: Social(
-                        title: document['name'],
+                        name: document['name'],
                         description: document['description'],
                         date: document['date'],
                         location: document['location'],
@@ -81,7 +81,8 @@ class ListTileSocial extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-        onTap: () => Navigator.of(context)
+        onTap: () =>
+         Navigator.of(context)
                 .push(MaterialPageRoute(builder: (BuildContext context) {
               return Details(social: social);
             })),
@@ -106,7 +107,7 @@ class ListTileSocial extends StatelessWidget {
               ],
             )),
         title: Text(
-          social.title,
+          social.name,
           style: TextStyle(
               color: Theme.of(context).accentColor,
               fontWeight: FontWeight.bold,

@@ -44,6 +44,7 @@ dependencies:
   day_night_switch:
   story_view:
   image_cropper: 1.0.2
+  cached_network_image: ^1.1.3
     
 dev_dependencies:
   

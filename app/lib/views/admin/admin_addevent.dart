@@ -48,20 +48,29 @@ class _AddEventState extends State<AddEvent> {
 
   Future<String> _pickSaveImage() async {
     File imageFile = await ImagePicker.pickImage(source: ImageSource.gallery);
+     StorageUploadTask uploadTask;
     StorageReference ref = FirebaseStorage.instance
+   
         .ref()
         .child("Hubbard Hall")
-        .child("social1.jpg");
-    StorageUploadTask uploadTask = ref.putFile(imageFile);
-    final StorageTaskSnapshot downloadUrl = (await uploadTask.onComplete);
-    final String url = (await downloadUrl.ref.getDownloadURL());
-    print(url);
-    imgURL = url;
-    setState(() {
-      _unlockedB = true;
-    });
+        .child('images/${DateTime.now()}.png');
+        try {
+          uploadTask = ref.putFile(imageFile);
+          final StorageTaskSnapshot downloadUrl = (await uploadTask.onComplete);
+          final String url = (await downloadUrl.ref.getDownloadURL());
+          print(url);
+          imgURL = url;
+          setState(() {
+            _unlockedB = true;
+          });
 
-    return url;
+          return url;
+          
+        } catch (e) {
+        }
+    
+    
+    
   }
 
   String readableDate() {

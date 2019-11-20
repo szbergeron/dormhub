@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 class Social {
-  String title;
+  String name;
   String description;
   String date;
   String img;
@@ -11,11 +11,11 @@ class Social {
   
 
   Social(
-      {this.title, this.description,this.date,this.img,this.location});
+      {this.name, this.description,this.date,this.img,this.location});
 
       Map<String,dynamic> toMap(){
        var map = new Map();
-        map = {"title": title, "description": description, "date":date, "img":img,"location":location};
+        map = {"name": name, "description": description, "date":date, "img":img,"location":location};
         return map;
       }
 }

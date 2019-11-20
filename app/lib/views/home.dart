@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
     return Socials(hall: hall,);
    }else if(_myIndex == 2)
    {
-    return GiraGira(hall: hall,);
+    return FirestoreSlideshow(hall:hall);
    }
    else
    {
@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> {
   final List<Widget> _myscreen = [
     HomeScreen(),
     Socials(),
-    GiraGira(),
+    FirestoreSlideshow(),
     Profile(),
   ];
   
