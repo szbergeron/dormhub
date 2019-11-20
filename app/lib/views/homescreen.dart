@@ -84,7 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         
         BuildTileM(
-          onTap: _getData,
+        
           child: Padding(
             padding: const EdgeInsets.all(24.0),
             child: Column(

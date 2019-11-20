@@ -1,4 +1,5 @@
 import 'package:dormshub/model/social.dart';
+import 'package:dormshub/views/admin/image_capture.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'dart:convert';
@@ -21,6 +22,7 @@ class _AddEventState extends State<AddEvent> {
 
   final name = TextEditingController();
   final desc = TextEditingController();
+  final location = TextEditingController();
   String _chooseDate = "Click here to choose a date";
   String imgURL = "";
   bool _unlockedB = false;
@@ -36,15 +38,13 @@ class _AddEventState extends State<AddEvent> {
       "name": name.text,
       "description": desc.text,
       "date": _chooseDate,
-      "img": imgURL
+      "img": imgURL,
+      "location":location.text,
     });
     return true;
-    
   }
-  Future submit()
-  {
-    
-  }
+
+  Future submit() {}
 
   Future<String> _pickSaveImage() async {
     File imageFile = await ImagePicker.pickImage(source: ImageSource.gallery);
@@ -82,6 +82,7 @@ class _AddEventState extends State<AddEvent> {
     if (name.text == "" ||
         desc.text == "" ||
         imgURL == "" ||
+        location.text == "" ||
         _chooseDate == defaultDate) {
       return false;
     } else {
@@ -136,12 +137,17 @@ class _AddEventState extends State<AddEvent> {
                     children: <Widget>[
                       RaisedButton(
                         onPressed: _pickSaveImage,
+                        // onPressed: () => Navigator.pushReplacement(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: (context) =>
+                        //             ImageCapture())), //_pickSaveImage,
                         child: Text('Choose Image'),
                       ),
                       SizedBox(width: 10.0),
                       RaisedButton(
                         onPressed: () {},
-                        child: Text('Upload Image'),
+                        child: Text('Take Picture'),
                       ),
                     ]))
           else
@@ -164,6 +170,15 @@ class _AddEventState extends State<AddEvent> {
                             color: Colors.red,
                           ))
                     ])),
+          ListTile(
+            leading: const Icon(Icons.my_location),
+            title: TextField(
+              controller: location,
+              decoration: InputDecoration(
+                hintText: "Location",
+              ),
+            ),
+          ),
           ListTile(
             leading: const Icon(Icons.date_range),
             title: FlatButton(
@@ -190,19 +205,15 @@ class _AddEventState extends State<AddEvent> {
           MaterialButton(
             onPressed: () {
               if (constraintValidator()) {
-                createRecord().then((bool b){
-                   setState(() {
-                  _isPaused = false;
-                });
+                createRecord().then((bool b) {
+                  setState(() {
+                    _isPaused = false;
+                  });
 
-                Navigator.pop(context);
+                  Navigator.pop(context);
                 });
-               
-
               } else {
                 showAlertDialog(context);
-                
-              
               }
             },
             minWidth: 100,
@@ -211,26 +222,24 @@ class _AddEventState extends State<AddEvent> {
             textColor: Colors.white,
             child: Text("Post"),
           ),
-          Container(child: FlareActor(
-                      'assets/anim/successcheck.flr',
-                      alignment: Alignment.center,
-                      fit: BoxFit.contain,
-                      animation: _animationName,
-                      isPaused: _isPaused,
-                      
-                      
-                    ),
-                    
-                    width: 300,
-                    height: 300,
-                  ),
+          Container(
+            child: FlareActor(
+              'assets/anim/successcheck.flr',
+              alignment: Alignment.center,
+              fit: BoxFit.contain,
+              animation: _animationName,
+              isPaused: _isPaused,
+            ),
+            width: 300,
+            height: 300,
+          ),
         ],
       ),
     );
   }
 }
- showAlertDialog(BuildContext context) {
 
+showAlertDialog(BuildContext context) {
   // set up the button
   Widget okButton = FlatButton(
     child: Text("OK"),

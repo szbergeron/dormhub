@@ -42,6 +42,7 @@ class _SocialsState extends State<Socials> {
                         title: document['name'],
                         description: document['description'],
                         date: document['date'],
+                        location: document['location'],
                         img: document['img']));
               }).toList(),
             );

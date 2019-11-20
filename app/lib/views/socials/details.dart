@@ -40,7 +40,7 @@ class _DetailsState extends State<Details> {
 
       body: ListView(
         children: <Widget>[
-          SizedBox(height: 10),
+         
           Container(
             padding: EdgeInsets.only(left: 0),
             height: 250,
@@ -89,7 +89,7 @@ class _DetailsState extends State<Details> {
                   Container(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      "${places[0]["location"]}",
+                      social.location,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 13,

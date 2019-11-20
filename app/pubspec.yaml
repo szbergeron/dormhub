@@ -43,6 +43,7 @@ dependencies:
   provider: ^3.1.0
   day_night_switch:
   story_view:
+  image_cropper: 1.0.2
     
 dev_dependencies:
   

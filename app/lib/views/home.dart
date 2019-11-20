@@ -110,8 +110,8 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(icon: Icon(Icons.people), title: Text("Socials")),
           BottomNavigationBarItem(icon: Icon(Icons.event), title: Text("Events")),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            title: Text("Person"),
+            icon: Icon(Icons.book),
+            title: Text("News"),
           )
         ],
         type: BottomNavigationBarType.fixed,
