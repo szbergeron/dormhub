@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:dormshub/views/homescreen.dart';
 import 'package:dormshub/views/profile.dart';
 import 'package:dormshub/views/socials/socials.dart';
-
+import './calendar/calendar.dart';
 class HomePage extends StatefulWidget {
   List<String> hall = [];
   
@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
     return Socials(hall: hall,);
    }else if(_myIndex == 2)
    {
-    return FirestoreSlideshow(hall:hall);
+    return CalendarScreen(hall:hall);//FirestoreSlideshow(hall:hall);
    }
    else
    {

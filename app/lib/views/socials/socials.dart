@@ -49,7 +49,8 @@ class _SocialsState extends State<Socials> {
             );
         }
       },
-    ));
+    )
+    );
   }
 }
 

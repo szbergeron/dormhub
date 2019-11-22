@@ -14,12 +14,14 @@ class HomeScreen extends StatefulWidget {
   _HomeScreenState createState() => _HomeScreenState(hall: this.hall);
 }
 
+
 class _HomeScreenState extends State<HomeScreen> {
    List<String> hall = [];
   _HomeScreenState({this.hall});
   int _events = 0;
   
-  void _getData(myhall) async {
+  Future<String> _getData(myhall) async {
+    
     //print("This is my hall: "+myhall);
     var result;
     await databaseReference
@@ -29,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
         .then((DocumentSnapshot data) => result = data);
        
     if (!mounted) {
-      return;
+      return "";
     }
     setState(() {
      _events = result["events"];

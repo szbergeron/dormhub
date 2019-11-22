@@ -21,7 +21,7 @@ class AdminHome extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    "Hubbard Hall",
+                    "Admin",
                     style: TextStyle(color: Colors.white),
                   
                   ),
