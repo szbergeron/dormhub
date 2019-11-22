@@ -7,16 +7,20 @@ import 'package:dormshub/views/profile.dart';
 import 'package:dormshub/views/socials/socials.dart';
 
 class HomePage extends StatefulWidget {
-  String hall = "";
-
+  List<String> hall = [];
+  
   HomePage({this.hall});
+
+
+  
   @override
-  _HomePageState createState() => _HomePageState(hall);
+  _HomePageState createState() => _HomePageState(this.hall);
+   
 }
 
 
 class _HomePageState extends State<HomePage> {
-  String  hall;
+  List<String> hall =[];
  _HomePageState(this.hall); 
  
 
@@ -71,7 +75,7 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    hall,
+                    hall[1],
                     //style: TextStyle(color: Colors.white),
                   
                   ),

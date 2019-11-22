@@ -6,7 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 
 class HomeScreen extends StatefulWidget {
-  String hall = "";
+  List<String> hall = [];
 
   HomeScreen({this.hall});
 
@@ -15,10 +15,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String hall;
+   List<String> hall = [];
   _HomeScreenState({this.hall});
   int _events = 0;
+  
   void _getData(myhall) async {
+    //print("This is my hall: "+myhall);
     var result;
     await databaseReference
         .collection("halls")
@@ -30,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
       return;
     }
     setState(() {
-      _events = result["events"];
+     _events = result["events"];
     });
   }
 
@@ -42,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     
     
-    _getData(hall);
+    _getData(hall[0]);
 
     return StaggeredGridView.count(
       crossAxisCount: 2,

@@ -3,23 +3,24 @@ import 'package:flutter/material.dart';
 import '../../model/social.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
+import 'package:like_button/like_button.dart';
 
 class Socials extends StatefulWidget {
-  String hall = "";
+  List<String> hall = [];
   Socials({this.hall});
 
   _SocialsState createState() => _SocialsState(hall: this.hall);
 }
 
 class _SocialsState extends State<Socials> {
-  String hall;
+  List<String> hall = [];
   _SocialsState({this.hall});
   
   @override
   Widget build(BuildContext context) {
     final refStream = Firestore.instance
           .collection("halls")
-          .document(hall)
+          .document(hall[0])
           .collection("socials")
           .where('date', isGreaterThanOrEqualTo: DateTime.now().toString())
           .snapshots();

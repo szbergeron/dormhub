@@ -9,13 +9,19 @@ import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-
+import '../../auth/authentication.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 class AddEvent extends StatefulWidget {
+
+  BaseAuth user_id;
+  AddEvent({this.user_id});
   @override
-  _AddEventState createState() => _AddEventState();
+  _AddEventState createState() => _AddEventState(user_id: this.user_id);
 }
 
 class _AddEventState extends State<AddEvent> {
+  BaseAuth user_id;
+  _AddEventState({this.user_id});
   File file;
   final databaseReference = Firestore.instance;
   final String defaultDate = "Click here to choose a date";
@@ -28,11 +34,25 @@ class _AddEventState extends State<AddEvent> {
   bool _unlockedB = false;
   bool _isPaused = true;
   String _animationName = "Untitled";
+  String user_hall = "";
+
+Future<String> getUser() async {
+  FirebaseUser u =  await user_id.getCurrentUser();
+  user_hall = u.email.split("@")[0]; 
+  return user_hall;
+  
+}
+
+
 
   Future<bool> createRecord() async {
-    await databaseReference
+ 
+    
+    await getUser().then((a) async
+    {
+       await databaseReference
         .collection("halls")
-        .document("Hubbard Hall")
+        .document(user_hall)
         .collection("socials")
         .add({
       "name": name.text,
@@ -41,6 +61,10 @@ class _AddEventState extends State<AddEvent> {
       "img": imgURL,
       "location":location.text,
     });
+    return user_hall;
+
+    });
+       
     return true;
   }
 
@@ -90,7 +114,7 @@ class _AddEventState extends State<AddEvent> {
   bool constraintValidator() {
     if (name.text == "" ||
         desc.text == "" ||
-        imgURL == "" ||
+        // imgURL == "" ||
         location.text == "" ||
         _chooseDate == defaultDate) {
       return false;
@@ -101,6 +125,7 @@ class _AddEventState extends State<AddEvent> {
 
   @override
   Widget build(BuildContext context) {
+   
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xff0044bb),

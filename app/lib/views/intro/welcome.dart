@@ -155,11 +155,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       ),
     );
   }
-   Future<String>_readHallPreference() async {
+   Future<List<String>>_readHallPreference() async {
         final prefs = await SharedPreferences.getInstance();
         final key = 'hall_selected';
-        final value = prefs.getString(key);
-        if(value == null || value == "")
+        final value = prefs.getStringList(key);
+        if(value == null || value == [])
         {
           return null;
         }

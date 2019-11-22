@@ -29,11 +29,11 @@ class _AdminLoginState extends State<AdminLogin> {
       _isLoading = true;
     });
     try {
-      String userId =
+      String user_id =
           await myauth.signIn(emailcontroller.text, passwordcontroller.text);
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => AdminHome(),
+          builder: (context) => AdminHome(user_id: myauth),
         ),
       );
 

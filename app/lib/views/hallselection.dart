@@ -17,33 +17,33 @@ class HallSelectionPage extends StatefulWidget {
 }
 
 class _HallSelectionPageState extends State<HallSelectionPage> {
-  List<String> halls = [
-    "Hubbard Hall",
-    "Haaland Hall",
-    "Mills Hall",
-    "Scott Hall",
-    "Handler Hall",
-    "Peterson Hall",
-    "Stock Hall",
-    "Christensen Hall",
-    "Williamson Hall",
-    "Alexander Hall",
-    "Upper Quad",
-    "Gibbs Hall",
-    "Engelhardt Hall",
-    "Congreve Hall",
-    "Fairchild Hall",
-    "Adams Tower",
-    "Hetzel Hall",
-    "Hunter Hall",
-    "Jessie Doe Hall",
-    "Lord Hall",
-    "McLaughlin Hall",
-    "Sawyer Hall",
-    "The Minis",
-  ];
+  Map<int, List<String>> halls = {
+    0: ["hubbardhall", "Hubbard Hall"],
+    1: ["haalandhall", "Haaland Hall"],
+    2: ["millshall", "Mills Hall"],
+    3: ["scotthall", "Scott Hall"],
+    4: ["handlerhall", "Handler Hall"],
+    5: ["petersonhall", "Peterson Hall"],
+    6: ["stokehall", "Stoke Hall"],
+    7: ["christensenhall", "Christensen Hall"],
+    8: ["williamsonhall", "Williamson Hall"],
+    9: ["alexanderhall", "Alexander Hall"],
+    10: ["upperquad", "Upper Quad"],
+    11: ["gibbshall", "Gibbs Hall"],
+    12: ["engelhardthall", "Engelhardt Hall"],
+    13: ["congrevehall", "Congreve Hall"],
+    14: ["fairchildhall", "Fairchild Hall"],
+    15: ["adamstower", "Adams Tower"],
+    16: ["hetzelhall", "Hetzel Hall"],
+    17: ["hunterhall", "Hunter Hall"],
+    18: ["jessiedoehall", "Jessie Doe Hall"],
+    19: ["lordhall", "Lord Hall"],
+    20: ["mcLaughlinhall", "McLaughlin Hall"],
+    21: ["sawyerhall", "Sawyer Hall"],
+    22: ["theminis", "The Minis"],
+  };
   final databaseReference = Firestore.instance;
-  Future<Map> getData(String hallselected) async {
+  Future<Map> getData(List<String> hallselected) async {
     print("here");
     _saveSelection(hallselected);
     var result;
@@ -56,6 +56,10 @@ class _HallSelectionPageState extends State<HallSelectionPage> {
 
     print(result["name"]);
     return result;
+  }
+
+  String processString(String s) {
+    return s.toLowerCase().trim().replaceAll(new RegExp(r"\s+\b|\b\s"), "");
   }
 
   @override
@@ -81,17 +85,18 @@ class _HallSelectionPageState extends State<HallSelectionPage> {
                 itemBuilder: (context, index) {
                   return ListTile(
                     title: Text(
-                      halls[index],
+                      halls[index][1],
                       style: TextStyle(fontSize: 18),
                     ),
                     onTap: () => {
-                      
+                      //print("This2 is my hall: " + halls[index].toString()),
                       getData(halls[index]),
-                      Navigator.of(context).pushAndRemoveUntil( MaterialPageRoute(
-                          builder: (context) => HomePage(hall: halls[index]),
-                        ), (e) => false)
-
-                      
+                      Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                HomePage(hall: halls[index]),
+                          ),
+                          (e) => false)
                     }, //push hall index too
                   );
                 })),
@@ -100,13 +105,13 @@ class _HallSelectionPageState extends State<HallSelectionPage> {
     );
   }
 
-  _saveSelection(String hall) async {
-        final prefs = await SharedPreferences.getInstance();
-        final key = 'hall_selected';
-        final value = hall;
-        prefs.setString(key, value);
-        print('saved $value');
-      }
+  _saveSelection(List<String> hall) async {
+    final prefs = await SharedPreferences.getInstance();
+    final key = 'hall_selected';
+    final value = hall;
+    prefs.setStringList(key, value);
+    print('saved $value');
+  }
 }
 
 class Dosmt extends StatelessWidget {

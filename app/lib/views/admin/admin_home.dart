@@ -1,9 +1,15 @@
 import 'package:dormshub/views/admin/admin_addevent.dart';
 import 'package:dormshub/views/admin/admin_homescreen.dart';
+import 'package:dormshub/views/admin/form_page.dart';
 import 'package:flutter/material.dart';
-
+import '../../auth/createHallAccounts.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:dormshub/auth/authentication.dart';
 class AdminHome extends StatelessWidget {
-  const AdminHome({Key key}) : super(key: key);
+
+ BaseAuth user_id;
+ AdminHome({this.user_id});
+
 
   @override
   Widget build(BuildContext context) {
@@ -28,13 +34,13 @@ class AdminHome extends StatelessWidget {
                   icon: Icon(Icons.add,color: Colors.white,),
                   onPressed: () => Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => AddEvent(),
+                      builder: (context) => AddEvent(user_id:user_id),
                     ),
                   ),
                 ),
               ],
             ),
-      body: AdminHomeScreen(),
+      body: AdminHomeScreen(user_id:user_id),
     );
   }
 }

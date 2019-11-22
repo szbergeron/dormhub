@@ -8,14 +8,18 @@ class Social {
   String location;
   // Image picture;
   // DateTime date;
-  
 
-  Social(
-      {this.name, this.description,this.date,this.img,this.location});
+  Social({this.name, this.description, this.date, this.img, this.location});
 
-      Map<String,dynamic> toMap(){
-       var map = new Map();
-        map = {"name": name, "description": description, "date":date, "img":img,"location":location};
-        return map;
-      }
+  Map<String, dynamic> toMap() {
+    var map = new Map();
+    map = {
+      "name": name,
+      "description": description,
+      "date": date,
+      "img": img,
+      "location": location
+    };
+    return map;
+  }
 }

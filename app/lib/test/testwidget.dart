@@ -14,7 +14,7 @@ import 'dart:async';
 import 'package:cached_network_image/cached_network_image.dart';
 
 class FirestoreSlideshow extends StatefulWidget {
-  String hall = "";
+  List<String> hall = [];
   FirestoreSlideshow({this.hall});
   createState() => FirestoreSlideshowState(hall: this.hall);
 }
@@ -24,7 +24,7 @@ class FirestoreSlideshowState extends State<FirestoreSlideshow> {
 
   final Firestore db = Firestore.instance;
   Stream slides;
-  String hall;
+   List<String> hall = [];
   FirestoreSlideshowState({this.hall});
 
   String activeTag = 'favorites';
@@ -76,7 +76,7 @@ class FirestoreSlideshowState extends State<FirestoreSlideshow> {
   Stream _queryDb() {
     final refStream = Firestore.instance
         .collection("halls")
-        .document(hall)
+        .document(hall[0])
         .collection("socials")
         .where('date', isGreaterThanOrEqualTo: DateTime.now().toString())
         .snapshots();
@@ -105,7 +105,7 @@ class FirestoreSlideshowState extends State<FirestoreSlideshow> {
         img: data['img']);
 
     return AnimatedContainer(
-       duration: Duration(milliseconds: 500),
+      duration: Duration(milliseconds: 500),
       curve: Curves.easeOutQuint,
       margin: EdgeInsets.only(top: top, bottom: 50, right: 30),
       decoration: BoxDecoration(),

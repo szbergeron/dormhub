@@ -117,11 +117,11 @@ class IntroductionPage extends StatelessWidget {
               borderRadius: BorderRadius.circular(25.0))),
     );
   }
-  Future<String>_readHallPreference() async {
+  Future<List<String>>_readHallPreference() async {
         final prefs = await SharedPreferences.getInstance();
         final key = 'hall_selected';
-        final value = prefs.getString(key);
-        if(value == null || value == "")
+        final value = prefs.getStringList(key);
+        if(value == null || value == [])
         {
           return null;
         }

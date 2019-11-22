@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:dormshub/auth/authentication.dart';
 class AdminHomeScreen extends StatefulWidget {
+
+  BaseAuth user_id;
+  AdminHomeScreen({this.user_id});
 
   @override
   _AdminHomeScreenState createState() => _AdminHomeScreenState();
