@@ -29,7 +29,7 @@ List<String> halls = [
   ];
 
 
-class CreateHallAcounts extends StatelessWidget {
+class CreateHallAccounts extends StatelessWidget {
   
   final BaseAuth auth = new Auth();
   final databaseReference = Firestore.instance;
@@ -43,6 +43,25 @@ class CreateHallAcounts extends StatelessWidget {
   String passwordCreator(String s)
   {
     return "!"+s.toLowerCase().trim().replaceAll(new RegExp(r"\s+\b|\b\s"), "")+"1";
+  }
+
+  Future<bool> createRecord() async {
+ 
+    
+      for(var i = 0; i < halls.length; i++){
+       await databaseReference
+        .collection("halls")
+         .document(halls[i].trim().toLowerCase().replaceAll(new RegExp(r"\s+\b|\b\s"), ""))
+        .collection("news")
+        .add({
+     
+    });
+      }
+   
+
+    
+       
+    return true;
   }
 
   Future<bool> createDatabase() async {
@@ -71,7 +90,8 @@ class CreateHallAcounts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
       //auth.signUp("meemememm@g.com", "wadawdawdawd");
-    createDatabase();
+    createRecord();
+    
 
     return Container(
       child: Text("me"),

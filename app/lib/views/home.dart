@@ -6,6 +6,7 @@ import 'package:dormshub/views/homescreen.dart';
 import 'package:dormshub/views/profile.dart';
 import 'package:dormshub/views/socials/socials.dart';
 import './calendar/calendar.dart';
+import 'news/news.dart';
 class HomePage extends StatefulWidget {
   List<String> hall = [];
   
@@ -25,6 +26,7 @@ class _HomePageState extends State<HomePage> {
  
 
  Widget getPage(){
+   
    if(_myIndex == 0)
    {
      print(hall);
@@ -32,14 +34,14 @@ class _HomePageState extends State<HomePage> {
    }
    else if(_myIndex == 1)
    {
-    return Socials(hall: hall,);
+    return CalendarScreen(hall:hall);
    }else if(_myIndex == 2)
    {
-    return CalendarScreen(hall:hall);//FirestoreSlideshow(hall:hall);
+    return Socials(hall: hall,);//FirestoreSlideshow(hall:hall);
    }
    else
    {
-     return _myscreen[_myIndex];
+     return NewsScreen(hall: hall);
    }
    
  }
@@ -47,9 +49,9 @@ class _HomePageState extends State<HomePage> {
   int _myIndex = 0;
   final List<Widget> _myscreen = [
     HomeScreen(),
+    CalendarScreen(),
     Socials(),
-    FirestoreSlideshow(),
-    Profile(),
+    NewsScreen(),
   ];
   
   final List<String> _text = [
