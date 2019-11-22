@@ -65,15 +65,19 @@ class CardNews extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 1.0,
+      
+    
+      
 
-      //shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-      //margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
-
-      child: Container(
-        //decoration: BoxDecoration(// LinearGradient(begin: Alignment.topRight,end: Alignment.bottomLeft, stops: [0.1,0.6,0.9],
-        //              /*colors: [Colors.cyan,Colors.blue,Colors.blue])*/borderRadius: BorderRadius.circular(15)),
-        child: ListTileNews(news: news),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      margin: new EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
+        child: Container(
+          padding: EdgeInsets.all(2),
+          //decoration: BoxDecoration(// LinearGradient(begin: Alignment.topRight,end: Alignment.bottomLeft, stops: [0.1,0.6,0.9],
+          //              /*colors: [Colors.cyan,Colors.blue,Colors.blue])*/borderRadius: BorderRadius.circular(15)),
+          child: ListTileNews(news: news),
+        ),
+      
     );
   }
 }
@@ -91,15 +95,12 @@ class ListTileNews extends StatelessWidget {
                 .push(MaterialPageRoute(builder: (BuildContext context) {
               return DetailsNews(news: news);
             })),
-        contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+        contentPadding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
         leading: Container(
-            padding: EdgeInsets.only(right: 8.0),
-            decoration: new BoxDecoration(
-              border: new Border(
-                  //right: new BorderSide(width: 1.0, ))),
-                  ),
-            ),
+            padding: EdgeInsets.only(right: 1.0),
+            
             child: Column(
+              
               children: <Widget>[
                 Text(
                   processMonth(news.date),
@@ -111,19 +112,34 @@ class ListTileNews extends StatelessWidget {
                 ),
               ],
             )),
-        title: Text(
-          news.title,
-          style: TextStyle(
-              color: Theme.of(context).accentColor,
-              fontWeight: FontWeight.bold,
-              fontSize: 20),
+        title: Padding(
+          padding: const EdgeInsets.only(top:10.0,bottom:5),
+          child: Text(
+            
+            news.title,
+            style: TextStyle(
+              
+                color: Theme.of(context).accentColor,
+                fontWeight: FontWeight.bold,
+                fontSize: 20)
+          ),
         ),
         // subtitle: Text("Intermediate", style: TextStyle(color: Colors.white)),
 
         subtitle:
             //Icon(Icons.description, color: Colors.yellowAccent),
-            Text(news.description),
-        trailing: Icon(Icons.keyboard_arrow_right, size: 30.0));
+            Column(
+              mainAxisAlignment:MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+              
+                Text(news.description ,style:TextStyle(
+              fontSize: 15)),
+                SizedBox(height:20),
+                Center(child: Image.network(news.img,width:3000,height:210,))
+              ],
+            ),);
+       
   }
 
   String processMonth(String date) {

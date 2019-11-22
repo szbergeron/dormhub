@@ -25,7 +25,7 @@ class _DetailsState extends State<DetailsNews> {
 
       appBar: AppBar(
         
-        title: Text("Social"),
+        title: Text("News"),
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
